@@ -66,10 +66,10 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  for (let i = board.length-1; i >= 0; i--){
+  // first click of every column errors but still playable
+  for (let i = board.length-1 ;i >= 0; i--){
     if(board[i][x] === null){
       return i;
-  
     }
   }
   return null;
@@ -86,7 +86,7 @@ function placeInTable(y, x) {
   }else{
     gamePiece.classList.add("p2");
   }
-  document.getElementById(`${y}-${x}`).append(gamePiece);
+  document.getElementById(`${y}-${x}`).appendChild(gamePiece);
 }
 
 /** endGame: announce game end */
