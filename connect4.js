@@ -24,6 +24,7 @@ function makeBoard() {
       row.push(null);
     }
     board.push(row);
+  }
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -74,11 +75,12 @@ function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
   let gamePiece = document.createElement("div");
   gamePiece.classList.add("piece");
-  if (currentPlayer === 1){
+  if (currPlayer === 1){
     gamePiece.classList.add("p1");
   }else{
     gamePiece.classList.add("p2");
   }
+  document.getElementById(`${y}-${x}`).appendChild(gamePiece);
 }
 
 /** endGame: announce game end */
@@ -91,7 +93,7 @@ function endGame(msg) {
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  let xCoOrdinate = +evt.target.id;
+  const xCoOrdinate = +evt.target.id;
 
   // get next spot in column (if none, ignore click)
   let yCoOrdinate = findSpotForCol(xCoOrdinate);
@@ -101,6 +103,8 @@ function handleClick(evt) {
 
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
+
+  board[yCoOrdinate][xCoOrdinate] = currPlayer;
   placeInTable(yCoOrdinate, xCoOrdinate);
 
   // check for win
