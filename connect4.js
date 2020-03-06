@@ -18,7 +18,7 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  // Creates the board
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-  while (board.length <= HEIGHT){
+  while (board.length < HEIGHT){
     let row = [];
     for (let i = 1; i <= WIDTH; i++){
       row.push(null);
@@ -51,8 +51,10 @@ function makeHtmlBoard() {
   // creating playable space with coodinate IDs (y-x) for each cell... (0,0) in top left
   for (let y = 0; y < HEIGHT; y++) {
     let row = document.createElement("tr");
+    
     for (let x = 0; x < WIDTH; x++) {
       let cell = document.createElement("td");
+      
       cell.setAttribute("id", `${y}-${x}`);
       row.append(cell);
     }
@@ -80,6 +82,7 @@ function findSpotForCol(x) {
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
   let gamePiece = document.createElement("div");
+  
   gamePiece.classList.add("piece");
   if (currPlayer === 1){
     gamePiece.classList.add("p1");
@@ -103,6 +106,7 @@ function handleClick(evt) {
 
   // get next spot in column (if none, ignore click)
   let yCoOrdinate = findSpotForCol(xCoOrdinate);
+  
   if (yCoOrdinate === null) {
     return;
   }
@@ -126,7 +130,7 @@ function handleClick(evt) {
   }
   // switch players
   // TODO: switch currPlayer 1 <-> 2
-  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1
+  currPlayer === 2 ? currPlayer = 1 : currPlayer = 2
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
