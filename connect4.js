@@ -102,7 +102,7 @@ function placeInTable(y, x) {
 function endGame(msg) {
   // TODO: pop up alert message
 
-  setTimeout(function(){alert(` player ${currPlayer} won!`)}, 250);
+  setTimeout(function(){alert(msg)}, 250);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -143,11 +143,13 @@ function handleClick(evt) {
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
 
 function checkForWin() {
+  // define a win
   function _win(cells) {
     // Check four cells to see if they're all color of current player
     //  - cells: list of four (y, x) cells
     //  - returns true if all are legal coordinates & all match currPlayer
 
+    // if the y and x coordinates are vaild playable coordinates within the grid return true else return false
     return cells.every(
       ([y, x]) =>
         y >= 0 &&
@@ -159,7 +161,7 @@ function checkForWin() {
   }
 
   // TODO: read and understand this code. Add comments to help you.
-
+  // determining a win with four of the same pieces vertically, horizonally, diagDR, diagDL
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
       let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];

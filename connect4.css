@@ -10,10 +10,11 @@
 
 .piece {
   /* TODO: make into circles */
+  /* position: absolute; */
   margin: 5px;
   width: 80%;
   height: 80%;
-  border-radius: 20%;
+  border-radius: 50%;
 }
 
 .p1{
