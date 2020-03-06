@@ -11,6 +11,9 @@ const HEIGHT = 6;
 let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
 
+makeBoard();
+makeHtmlBoard();
+
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
@@ -84,11 +87,13 @@ function placeInTable(y, x) {
   let gamePiece = document.createElement("div");
   
   gamePiece.classList.add("piece");
-  if (currPlayer === 1){
-    gamePiece.classList.add("p1");
-  }else{
-    gamePiece.classList.add("p2");
-  }
+  let classToAdd = currPlayer === 1 ? "p1" : "p2"
+  gamePiece.classList.add(classToAdd)
+  // if (currPlayer === 1){
+  //   gamePiece.classList.add("p1");
+  // }else{
+  //   gamePiece.classList.add("p2");
+  // }
   document.getElementById(`${y}-${x}`).appendChild(gamePiece);
 }
 
@@ -96,6 +101,8 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+
+  setTimeout(function(){alert(` player ${currPlayer} won!`)}, 250);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -126,7 +133,7 @@ function handleClick(evt) {
   // TODO: check if all cells in board are filled; if so call, call endGame
 
   if(board.every((subArray) => subArray.every((element) => element !== null))){
-    endGame("board full!");
+    return endGame("board full!");
   }
   // switch players
   // TODO: switch currPlayer 1 <-> 2
@@ -153,12 +160,12 @@ function checkForWin() {
 
   // TODO: read and understand this code. Add comments to help you.
 
-  for (var y = 0; y < HEIGHT; y++) {
-    for (var x = 0; x < WIDTH; x++) {
-      var horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-      var vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      var diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-      var diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+  for (let y = 0; y < HEIGHT; y++) {
+    for (let x = 0; x < WIDTH; x++) {
+      let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
+      let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
+      let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
+      let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
 
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
@@ -167,5 +174,4 @@ function checkForWin() {
   }
 }
 
-makeBoard();
-makeHtmlBoard();
+
