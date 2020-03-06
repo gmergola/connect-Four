@@ -1,3 +1,5 @@
 Connect Four game
 *Play* by getting four in a row
-![](photo.png)
+
+
+/Users/gennamergola/Desktop/photo,png.png
