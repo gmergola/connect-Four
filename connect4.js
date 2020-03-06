@@ -102,7 +102,16 @@ function placeInTable(y, x) {
 function endGame(msg) {
   // TODO: pop up alert message
 
-  setTimeout(function(){alert(msg)}, 250);
+  setTimeout(function(){
+    alert(msg)
+    let button = document.createElement("input");
+    button.value = "start a new game";
+    button.type = "button";
+    document.getElementById("game-over").append(button);
+    button.addEventListener("click", function(){
+      window.location.reload();
+    })
+  }, 250);
 }
 
 /** handleClick: handle click of column top to play piece */
