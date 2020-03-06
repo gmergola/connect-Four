@@ -105,6 +105,7 @@ function endGame(msg) {
   setTimeout(function(){
     alert(msg)
     let button = document.createElement("input");
+    button.id = "start-over-button";
     button.value = "start a new game";
     button.type = "button";
     document.getElementById("game-over").append(button);
